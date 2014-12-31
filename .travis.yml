@@ -1,3 +1,6 @@
 language: java
 
-cd twitter-bdd-sandbox
+jdk:
+  - oraclejdk7
+
+script: cd twitter-bdd-sandbox
