@@ -1,39 +1,62 @@
 package com.github.sigrist.bdd.twitter.pages;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
 import net.thucydides.core.annotations.DefaultUrl;
-import net.thucydides.core.annotations.findby.FindBy;
 import net.thucydides.core.pages.PageObject;
 
+/**
+ * Twitter home page.
+ * 
+ * Contains several other PageObjects elements to represent the page, like the
+ * signin form or the dashboard profile card. Also has some methods do perform
+ * actions in the main screen, like login, send a twitter, etc.
+ * 
+ * @author sigrist
+ *
+ */
 @DefaultUrl("http://www.twitter.com")
-public class TwitterHomePage extends PageObject  {
+public class TwitterHomePage extends PageObject {
 
-	@FindBy(id = "signin-email")
-	private WebElement signinEmail;
+	/**
+	 * The Dashboard profile card
+	 */
+	private TwitterDashboardProfileCard dashboardProfileCard;
 
-	@FindBy(id = "signin-password")
-	private WebElement signinPassword;
-	
-	@FindBy(xpath="//*[@id=\"front-container\"]/div[2]/div[2]/form/table/tbody/tr/td[2]/button")
-	private WebElement submitButton;
-	
-	public TwitterHomePage(WebDriver driver) {
-		super(driver);
-	}
-	
+	/**
+	 * The Login Page
+	 */
+	private TwitterLoginPage loginPage;
+
+	/**
+	 * Calls {@link TwitterLoginPage#fillEmail(String)}
+	 * 
+	 * @param email
+	 *            The email value
+	 */
 	public void fillEmail(String email) {
-		typeInto(this.signinEmail, email);
+		loginPage.fillEmail(email);
 	}
-	
+
+	/**
+	 * Calls {@link TwitterLoginPage#fillPassword(String)}
+	 * 
+	 * @param password
+	 *            The password value
+	 */
 	public void fillPassword(String password) {
-		typeInto(this.signinPassword, password);
+		loginPage.fillPassword(password);
 	}
-	
+
+	/**
+	 * Calls {@link TwitterLoginPage#submit()}
+	 * 
+	 * @return this PageObject
+	 */
 	public PageObject submit() {
-		clickOn(submitButton);
-		
+		loginPage.submit();
 		return this;
+	}
+
+	public TwitterDashboardProfileCard getDashboardProfileCard() {
+		return dashboardProfileCard;
 	}
 }

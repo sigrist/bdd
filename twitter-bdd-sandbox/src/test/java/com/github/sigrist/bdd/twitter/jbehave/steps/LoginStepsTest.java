@@ -3,6 +3,7 @@ package com.github.sigrist.bdd.twitter.jbehave.steps;
 import net.thucydides.core.annotations.Steps;
 
 import org.jbehave.core.annotations.Given;
+import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.junit.Assert;
@@ -10,12 +11,6 @@ import org.junit.Assert;
 import com.github.sigrist.bdd.twitter.steps.LoginScenarioSteps;
 
 
-/*
-Given the user is on the Twitter home page
-When the user enters the login 'invalid@gmail.com' and password 'notvalid'
-And do the log in
-Then they should see an error message 'The email and password you entered did not match our records. Please double-check and try again.'
- */
 public class LoginStepsTest {
 
 	@Steps
@@ -23,11 +18,11 @@ public class LoginStepsTest {
 
 	@Given("the user is on the Twitter home page")
 	public void givenTheUserIsOnTwitterHomePage() {
-		loginSteps.isInTheHomePage();
+		loginSteps.goToHomePage();
 	}
 	
-	@When("the user enters the login '$email' and password '$password'")
-	public void entersEmailAndPassword(String email, String password) {
+	@When("the user enters the login $email and password $password")
+	public void entersEmailAndPassword(@Named("email") String email, @Named("password") String password) {
 		loginSteps.entersEmailAndPassword(email, password);
 	}
 	
@@ -36,8 +31,8 @@ public class LoginStepsTest {
 		loginSteps.login();
 	}
 	
-	@Then("they should see an error message '$message'")
-	public void shouldSeeErrorMessage(String message) {
+	@Then("they should see an error message $message")
+	public void shouldSeeErrorMessage(@Named("message") String message) {
 		boolean valid = loginSteps.checkErrorMessage(message);
 		
 		Assert.assertTrue(valid);

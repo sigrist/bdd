@@ -4,7 +4,7 @@
 	<groupId>com.github.sigrist.bdd</groupId>
 	<artifactId>twitter-bdd-sandbox</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>BDD Project to test BDD</name>
+	<name>Twitter BDD Sandbox</name>
 	<description>BDD Project to learn BDD with jBehave and Thucydides using the Twitter.com site to run the tests</description>
 
 	<properties>
