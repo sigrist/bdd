@@ -8,6 +8,6 @@ before_install:
   - "sh -e /etc/init.d/xvfb start"
   - "mvn install -DskipTests=true"
 install: 
-  - "mvn verify"
+  - "mvn verify thucydides:aggregate -Dmaven.test.failure.ignore=false"
 
 
